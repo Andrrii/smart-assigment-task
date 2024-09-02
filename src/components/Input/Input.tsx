@@ -1,4 +1,6 @@
 import {InputHTMLAttributes} from "react";
+import cls from "./Input.module.css";
+import {classNames} from "../../helpers/classnames";
 
 type HTMLInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -19,9 +21,14 @@ const Input = ({
   ...inputProps
 }: AppInputProps) => {
   return (
-    <div>
+    <div
+      className={classNames({
+        className: cls.InputWrapper,
+        additional: [className],
+      })}
+    >
       <input
-        className={className}
+        className={cls.input}
         type={type}
         value={value}
         onChange={(e) => onChange?.(e.target.value)}
