@@ -1,10 +1,9 @@
+import {IUser} from "../../types/index";
 import {rtkApi} from "../rtkApi";
 
 export const usersApiSlice = rtkApi.injectEndpoints({
   endpoints: (builder) => ({
-    //TODO: add type
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    getUsers: builder.query<any, void>({
+    getUsers: builder.query<IUser[], void>({
       query: () => ({
         url: "/users",
       }),
