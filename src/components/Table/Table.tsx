@@ -1,3 +1,5 @@
+import {memo} from "react";
+import Input from "../Input/Input";
 import cls from "./Table.module.css";
 
 type Data = {
@@ -8,11 +10,14 @@ type Data = {
 interface ColumnDef {
   field: keyof Data;
   headerName?: string;
+  isFilterable?: boolean;
+  onFilterChanged?: (value: string) => void;
 }
 
 interface ITableProps {
   data: Data[];
   columnDefs: ColumnDef[];
+  filters?: Record<keyof Data, string>;
 }
 
 const Table = ({data, columnDefs}: ITableProps): JSX.Element => {
@@ -24,6 +29,7 @@ const Table = ({data, columnDefs}: ITableProps): JSX.Element => {
             {columnDefs.map((col) => (
               <th key={col.field} className={cls.th}>
                 {col?.headerName || col.field}
+                {col?.isFilterable && <Input onChange={col?.onFilterChanged} />}
               </th>
             ))}
           </tr>
