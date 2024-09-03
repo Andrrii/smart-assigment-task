@@ -17,7 +17,7 @@ const Input = ({
   className,
   value,
   onChange,
-  type = "text",
+  type = "search",
   ...inputProps
 }: AppInputProps) => {
   return (
