@@ -1,5 +1,5 @@
-import {FiltersSchema} from "./slices/filtersSlice";
+import {TableFiltersSchema} from "./slices/tableFiltersSlice";
 
 export interface StateSchema {
-  filters: FiltersSchema;
+  tableFilters: TableFiltersSchema;
 }

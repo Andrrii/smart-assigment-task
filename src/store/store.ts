@@ -1,11 +1,11 @@
 import {configureStore} from "@reduxjs/toolkit";
 import {rtkApi} from "./rtkApi";
-import {filtersReducer} from "./slices/filtersSlice";
+import {tableFiltersReducer} from "./slices/tableFiltersSlice";
 
 export function createReduxStore() {
   return configureStore({
     reducer: {
-      filters: filtersReducer,
+      tableFilters: tableFiltersReducer,
       [rtkApi.reducerPath]: rtkApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>

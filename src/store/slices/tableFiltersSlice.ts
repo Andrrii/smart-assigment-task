@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-export interface FiltersSchema {
+export interface TableFiltersSchema {
   filters: {
     name: string;
     username: string;
@@ -9,7 +9,7 @@ export interface FiltersSchema {
   };
 }
 
-const initialState: FiltersSchema = {
+const initialState: TableFiltersSchema = {
   filters: {
     name: "",
     username: "",
@@ -18,14 +18,14 @@ const initialState: FiltersSchema = {
   },
 };
 
-const filtersSlice = createSlice({
-  name: "filters",
+const tableFiltersSlice = createSlice({
+  name: "tableFilters",
   initialState,
   reducers: {
     setFilter: (
       state,
       action: PayloadAction<{
-        field: keyof FiltersSchema["filters"];
+        field: keyof TableFiltersSchema["filters"];
         value: string;
       }>,
     ) => {
@@ -35,5 +35,5 @@ const filtersSlice = createSlice({
   },
 });
 
-export const {actions: filtersActions} = filtersSlice;
-export const {reducer: filtersReducer} = filtersSlice;
+export const {actions: tableFiltersActions} = tableFiltersSlice;
+export const {reducer: tableFiltersReducer} = tableFiltersSlice;
