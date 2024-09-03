@@ -1,8 +1,8 @@
 import {Dispatch} from "@reduxjs/toolkit";
-import {tableFiltersActions} from "../store/slices/tableFiltersSlice";
-import {useGetUsersQuery} from "../store/slices/usersApiSlice";
-import Table from "./Table/Table";
 import {useDispatch} from "react-redux";
+import {tableFiltersActions} from "../../store/slices/tableFiltersSlice";
+import {useGetUsersQuery} from "../../store/slices/usersApiSlice";
+import Table from "../Table/Table";
 
 const getColumnDefs = (dispatch: Dispatch) => [
   {
@@ -35,7 +35,7 @@ const getColumnDefs = (dispatch: Dispatch) => [
   },
 ];
 
-const Monitor = () => {
+const UsersInfo = () => {
   const {data: users} = useGetUsersQuery();
   const dispatch = useDispatch();
 
@@ -44,4 +44,4 @@ const Monitor = () => {
   return <Table data={users} columnDefs={getColumnDefs(dispatch)} />;
 };
 
-export default Monitor;
+export default UsersInfo;
