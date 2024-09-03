@@ -11,6 +11,7 @@ const getColumnDefs = (dispatch: Dispatch): ColumnDef[] => [
     isFilterable: true,
     onFilterChanged: (value: string) =>
       dispatch(tableFiltersActions.setFilter({field: "name", value})),
+    inputProps: {placeholder: "Filter by name"},
   },
   {
     field: "username",
@@ -18,6 +19,7 @@ const getColumnDefs = (dispatch: Dispatch): ColumnDef[] => [
     isFilterable: true,
     onFilterChanged: (value: string) =>
       dispatch(tableFiltersActions.setFilter({field: "username", value})),
+    inputProps: {placeholder: "Filter by username"},
   },
   {
     field: "email",
@@ -25,6 +27,7 @@ const getColumnDefs = (dispatch: Dispatch): ColumnDef[] => [
     isFilterable: true,
     onFilterChanged: (value: string) =>
       dispatch(tableFiltersActions.setFilter({field: "email", value})),
+    inputProps: {placeholder: "Filter by email"},
   },
   {
     field: "phone",
@@ -32,6 +35,7 @@ const getColumnDefs = (dispatch: Dispatch): ColumnDef[] => [
     isFilterable: true,
     onFilterChanged: (value: string) =>
       dispatch(tableFiltersActions.setFilter({field: "phone", value})),
+    inputProps: {placeholder: "Filter by phone"},
   },
 ];
 
