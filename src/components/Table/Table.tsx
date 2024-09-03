@@ -1,5 +1,5 @@
 import {memo, useMemo} from "react";
-import Input from "../Input/Input";
+import Input, {AppInputProps} from "../Input/Input";
 import cls from "./Table.module.css";
 import {useSelectedFilters} from "../../hooks/useSelectedFilters";
 
@@ -18,6 +18,7 @@ type ColumnDefWithoutFilter = BaseColumnDef & {isFilterable?: false};
 type ColumnDefWithFilter = BaseColumnDef & {
   isFilterable: true;
   onFilterChanged: (value: string) => void;
+  inputProps?: Omit<AppInputProps, "onChange">;
 };
 
 export type ColumnDef = ColumnDefWithoutFilter | ColumnDefWithFilter;
@@ -56,7 +57,9 @@ const Table = ({data, columnDefs}: ITableProps): JSX.Element => {
             {columnDefs.map((col) => (
               <th key={col.field} className={cls.th}>
                 {col?.headerName || col.field}
-                {col?.isFilterable && <Input onChange={col?.onFilterChanged} />}
+                {col?.isFilterable && (
+                  <Input onChange={col?.onFilterChanged} {...col?.inputProps} />
+                )}
               </th>
             ))}
           </tr>
