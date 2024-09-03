@@ -3,10 +3,6 @@ import Table from "./Table/Table";
 
 const columnDefs = [
   {
-    field: "id",
-    headerName: "ID",
-  },
-  {
     field: "name",
     headerName: "Name",
   },
