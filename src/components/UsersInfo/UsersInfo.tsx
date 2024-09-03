@@ -2,9 +2,9 @@ import {Dispatch} from "@reduxjs/toolkit";
 import {useDispatch} from "react-redux";
 import {tableFiltersActions} from "../../store/slices/tableFiltersSlice";
 import {useGetUsersQuery} from "../../store/slices/usersApiSlice";
-import Table from "../Table/Table";
+import Table, {ColumnDef} from "../Table/Table";
 
-const getColumnDefs = (dispatch: Dispatch) => [
+const getColumnDefs = (dispatch: Dispatch): ColumnDef[] => [
   {
     field: "name",
     headerName: "Name",

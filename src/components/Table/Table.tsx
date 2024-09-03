@@ -8,12 +8,19 @@ type Data = {
   [key: string]: string | number;
 };
 
-interface ColumnDef {
+type BaseColumnDef = {
   field: keyof Data;
   headerName?: string;
-  isFilterable?: boolean;
-  onFilterChanged?: (value: string) => void;
-}
+};
+
+type ColumnDefWithoutFilter = BaseColumnDef & {isFilterable?: false};
+
+type ColumnDefWithFilter = BaseColumnDef & {
+  isFilterable: true;
+  onFilterChanged: (value: string) => void;
+};
+
+export type ColumnDef = ColumnDefWithoutFilter | ColumnDefWithFilter;
 
 interface ITableProps {
   data: Data[];
