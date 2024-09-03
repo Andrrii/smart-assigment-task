@@ -3,6 +3,7 @@ import {useDispatch} from "react-redux";
 import {tableFiltersActions} from "../../store/slices/tableFiltersSlice";
 import {useGetUsersQuery} from "../../store/slices/usersApiSlice";
 import Table, {ColumnDef} from "../Table/Table";
+import cls from "./UsersInfo.module.css";
 
 enum Columns {
   name = "name",
@@ -53,7 +54,17 @@ const UsersInfo = () => {
 
   if (!users) return null;
 
-  return <Table data={users} columnDefs={getColumnDefs(dispatch)} />;
+  return (
+    <main className={cls.usersInfo}>
+      <button
+        className={cls.button}
+        onClick={() => dispatch(tableFiltersActions.resetFilters())}
+      >
+        Reset filters
+      </button>
+      <Table data={users} columnDefs={getColumnDefs(dispatch)} />{" "}
+    </main>
+  );
 };
 
 export default UsersInfo;
