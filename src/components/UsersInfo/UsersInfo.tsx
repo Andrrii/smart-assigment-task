@@ -4,37 +4,45 @@ import {tableFiltersActions} from "../../store/slices/tableFiltersSlice";
 import {useGetUsersQuery} from "../../store/slices/usersApiSlice";
 import Table, {ColumnDef} from "../Table/Table";
 
+enum Columns {
+  name = "name",
+  username = "username",
+  email = "email",
+  phone = "phone",
+  website = "website",
+}
+
 const getColumnDefs = (dispatch: Dispatch): ColumnDef[] => [
   {
-    field: "name",
+    field: Columns.name,
     headerName: "Name",
     isFilterable: true,
     onFilterChanged: (value: string) =>
-      dispatch(tableFiltersActions.setFilter({field: "name", value})),
+      dispatch(tableFiltersActions.setFilter({field: Columns.name, value})),
     inputProps: {placeholder: "Filter by name"},
   },
   {
-    field: "username",
+    field: Columns.username,
     headerName: "Username",
     isFilterable: true,
     onFilterChanged: (value: string) =>
-      dispatch(tableFiltersActions.setFilter({field: "username", value})),
+      dispatch(tableFiltersActions.setFilter({field: Columns.username, value})),
     inputProps: {placeholder: "Filter by username"},
   },
   {
-    field: "email",
+    field: Columns.email,
     headerName: "Email",
     isFilterable: true,
     onFilterChanged: (value: string) =>
-      dispatch(tableFiltersActions.setFilter({field: "email", value})),
+      dispatch(tableFiltersActions.setFilter({field: Columns.email, value})),
     inputProps: {placeholder: "Filter by email"},
   },
   {
-    field: "phone",
+    field: Columns.phone,
     headerName: "Phone",
     isFilterable: true,
     onFilterChanged: (value: string) =>
-      dispatch(tableFiltersActions.setFilter({field: "phone", value})),
+      dispatch(tableFiltersActions.setFilter({field: Columns.phone, value})),
     inputProps: {placeholder: "Filter by phone"},
   },
 ];
