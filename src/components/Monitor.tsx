@@ -15,14 +15,23 @@ const getColumnDefs = (dispatch: Dispatch) => [
   {
     field: "username",
     headerName: "Username",
+    isFilterable: true,
+    onFilterChanged: (value: string) =>
+      dispatch(tableFiltersActions.setFilter({field: "username", value})),
   },
   {
     field: "email",
     headerName: "Email",
+    isFilterable: true,
+    onFilterChanged: (value: string) =>
+      dispatch(tableFiltersActions.setFilter({field: "email", value})),
   },
   {
     field: "phone",
     headerName: "Phone",
+    isFilterable: true,
+    onFilterChanged: (value: string) =>
+      dispatch(tableFiltersActions.setFilter({field: "phone", value})),
   },
 ];
 
