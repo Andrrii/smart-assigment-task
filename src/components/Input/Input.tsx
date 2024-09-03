@@ -23,7 +23,7 @@ const Input = ({
   return (
     <div
       className={classNames({
-        className: cls.InputWrapper,
+        className: cls.inputWrapper,
         additional: [className],
       })}
     >
