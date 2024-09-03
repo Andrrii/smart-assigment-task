@@ -1,6 +1,7 @@
-import {memo} from "react";
+import {memo, useMemo} from "react";
 import Input from "../Input/Input";
 import cls from "./Table.module.css";
+import {useSelectedFilters} from "../../hooks/useSelectedFilters";
 
 type Data = {
   id: string | number;
@@ -17,10 +18,29 @@ interface ColumnDef {
 interface ITableProps {
   data: Data[];
   columnDefs: ColumnDef[];
-  filters?: Record<keyof Data, string>;
 }
 
 const Table = ({data, columnDefs}: ITableProps): JSX.Element => {
+  const filters = useSelectedFilters();
+
+  const filteredData = useMemo(() => {
+    return data.filter((item) =>
+      columnDefs.every((col) => {
+        let filterValue = "";
+        if (Object.hasOwn(filters, col.field)) {
+          // @ts-expect-error col.field is expected to exist in filters after checking Object.hasOwn
+          filterValue = filters?.[col.field];
+        }
+        if (!filterValue) return true;
+        const itemValue = item[col.field];
+        return itemValue
+          .toString()
+          .toLowerCase()
+          .includes(filterValue.toLowerCase());
+      }),
+    );
+  }, [data, filters, columnDefs]);
+
   return (
     <div className={cls.tableContainer}>
       <table className={cls.table}>
@@ -35,7 +55,7 @@ const Table = ({data, columnDefs}: ITableProps): JSX.Element => {
           </tr>
         </thead>
         <tbody>
-          {data.map((user) => (
+          {filteredData.map((user) => (
             <tr key={user.id} className={cls.trHover}>
               {columnDefs.map((col) => (
                 <td key={col.field} className={cls.td}>
@@ -50,4 +70,4 @@ const Table = ({data, columnDefs}: ITableProps): JSX.Element => {
   );
 };
 
-export default Table;
+export default memo(Table);
