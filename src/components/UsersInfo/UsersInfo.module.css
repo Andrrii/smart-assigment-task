@@ -1,0 +1,16 @@
+.usersInfo {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+}
+
+.button {
+  align-self: center;
+  margin: 1rem 0;
+  padding: 1.5rem 2rem;
+  font-size: 1.4rem;
+  background-color: var(--color-primary);
+  color: var(--color-grey-light-1);
+  border-radius: 4px;
+  cursor: pointer;
+}
