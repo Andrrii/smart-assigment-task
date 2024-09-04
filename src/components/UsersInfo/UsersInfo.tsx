@@ -62,7 +62,7 @@ const UsersInfo = () => {
       >
         Reset filters
       </button>
-      <Table data={users} columnDefs={getColumnDefs(dispatch)} />{" "}
+      <Table data={users} columnDefs={getColumnDefs(dispatch)} />
     </main>
   );
 };
