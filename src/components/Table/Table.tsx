@@ -28,26 +28,25 @@ interface ITableProps {
   columnDefs: ColumnDef[];
 }
 
+const getFilterValue = (field: ColumnDef["field"], filters = {}) =>
+  field && field in filters ? filters[field as keyof typeof filters] : "";
+
 const Table = ({data, columnDefs}: ITableProps): JSX.Element => {
   const filters = useSelectedFilters();
 
   const filteredData = useMemo(() => {
     return data.filter((item) =>
-      columnDefs.every((col) => {
-        let filterValue = "";
-        if (Object.hasOwn(filters, col.field)) {
-          // @ts-expect-error col.field is expected to exist in filters after checking Object.hasOwn
-          filterValue = filters?.[col.field];
-        }
+      columnDefs.every(({field}) => {
+        const filterValue = getFilterValue(field, filters);
         if (!filterValue) return true;
-        const itemValue = item[col.field];
+        const itemValue = item[field];
         return itemValue
           .toString()
           .toLowerCase()
           .includes(filterValue.toLowerCase());
       }),
     );
-  }, [data, filters, columnDefs]);
+  }, [data, columnDefs, filters]);
 
   return (
     <div className={cls.tableContainer}>
@@ -58,7 +57,11 @@ const Table = ({data, columnDefs}: ITableProps): JSX.Element => {
               <th key={col.field} className={cls.th}>
                 {col?.headerName || col.field}
                 {col?.isFilterable && (
-                  <Input onChange={col?.onFilterChanged} {...col?.inputProps} />
+                  <Input
+                    value={getFilterValue(col?.field, filters)}
+                    onChange={col?.onFilterChanged}
+                    {...col?.inputProps}
+                  />
                 )}
               </th>
             ))}
